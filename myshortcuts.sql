@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2017 at 12:56 AM
+-- Generation Time: Sep 26, 2017 at 09:22 PM
 -- Server version: 10.1.24-MariaDB
 -- PHP Version: 7.1.6
 
@@ -86,14 +86,6 @@ CREATE TABLE `comments` (
   `Status` tinyint(4) NOT NULL DEFAULT '0',
   `Comment_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`ID`, `Name`, `Comment`, `Status`, `Comment_date`) VALUES
-(1, 'kamal', 'Goof\r\n', 1, '2017-09-29'),
-(2, 'fdgdfg', 'fdgdfgdg', 1, '2017-09-29');
 
 -- --------------------------------------------------------
 
@@ -229,7 +221,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `email`
 --
