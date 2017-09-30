@@ -10,7 +10,7 @@ $func    =  "includes/functions/";
 $css    =   "layout/css/";
 $js     =   "layout/js/";
 
-$fiIma = $_SERVER['DOCUMENT_ROOT']."/myShortcuts/Themes/Admin/data/upload/websites-Image/";
+$fiIma = $_SERVER['DOCUMENT_ROOT']."/Admin/data/upload/websites-Image/";
 $dir = './data/upload/websites-Image/';
 
 
