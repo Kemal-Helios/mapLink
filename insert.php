@@ -40,12 +40,22 @@
 
                 $nameFilter = filter_var($name,FILTER_SANITIZE_STRING);
                 $domaFilter = filter_var($doma,FILTER_SANITIZE_URL);
-                $descFilter = filter_var($desc,FILTER_SANITIZE_STRING);
+                $descFilter = filter_var($desc,FILTER_SANITIZE_STRING);?>
 
+            <script src="<?php echo $js ?>sweetalert2.min.js"></script>
+            <script>
+                function validation() {
+
+                     swal('Oops...', 'Name field is empty', 'error');
+                    }  
+            </script>
+
+           <?php
                $formErrors = array();
                
                if (empty($name)) {
-                   $formErrors[] = "Name field is empty";
+                   $formErrors[] = "<script type='text/javascript'>validation();</script>";
+              
                }
                if (empty($doma)) {
                    $formErrors[] = "The Domain field is empty";
