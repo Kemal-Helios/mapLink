@@ -1,2022 +1,1131 @@
 <?php
 /*
 =================================================================================
-=============================The Most Important Sites============================
+====================================== Sections page ============================
 =================================================================================
 */
     ob_start(); // Headers Sent
 
     session_start();
-        
-        include 'init.php';
-        include "navBar.php";
-        $mod = isset($_GET['mod']) ? $_GET['mod'] : 'Manage';
+include 'init.php';
 
-
+        $mod = isset($_GET['mod']) ? $_GET['mod'] : 'Error';
+        $goLink = "أذهب";
         $fileWebimg = './Admin/data/upload/websites-Image/';
-        $imgEmpty = 'empty.jpg';
-        $descEmpty = 'نعتذر الموقع لم يوصف بعد';
-        // Start Manage Page
 
-        if($mod == 'Manage') { //Manage  Page
-            
-          echo 'Welcome Manage';
-
-        } elseif($mod == 'imgDesign') { // ############# imgDesign Page #################### 
-         ?>
-
-        <div class="container">
-            <h1 class="cat-h1 text-center mb-5 mt-5">تصميم الرسومات</h1>
-            
-            <!--**************** Start Card-Color *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>الألون</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(1);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-         
-            <!--**************** Start Card-Color *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>صور</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(32);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-            <!--**************** Start Card-Fonts *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>الخطوط</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(2);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-            
-            <!--**************** Start Card-Programs *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>البرامج</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(3);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-            <!--**************** Start Card-Support *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>الدعم</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(4);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-            <!--**************** Start Card-Schools *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>المدارس</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(5);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-            <!--**************** Start Card-More *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>المزيد</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(6);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-            
-        </div><!--End container -->
+        // Start  Page
 
 
-                    
+                // ############# Error Page ####################0
+        if($mod == 'Error') {
+
+          ?>
+
+            <div class="page">
+              <div class="container">
+                <div class="row">
+
+                  <div class="o-4 col-sm-12 col-md-6">
+                    <h2>what did you do!!</h2>
+                    <p class="lead">This link is broken</p>
+
+                    <!-- add link to home :) -->
+                  <a href="index.php">
+                    <button class="btn btn-danger" type="button">GO HOME
+                      <i class="fa fa-home fa-2x" aria-hidden="true"></i></button>
+                  </a>
+                  </div>
+
+                  <div class="o-4 col-sm-12 col-md-6">
+                    <i class="fa fa-chain-broken" aria-hidden="true"></i>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
+<?php
+                // ############# imgDesign Page ####################1
+        } elseif($mod == 'imgDesign') { ?>
+
+          <div class="page"><!-- start page -->
+            <div class="back text-center ">
+              <h2 class="wow fadeInRightBig" data-wow-delay="1.2s" >تصميم الرسومات</h2>
+              <nav class="navbar navbar-default">
+              <div class="container">
+                  <div class="controls text-center  wow lightSpeedIn" data-wow-delay="1.2s" > <!-- start controls container -->
+                    <button type="button" class="control btn-default" data-filter=".cat-7">المزيد</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-6">الصور</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-5">مدارس</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-4">دعم</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-3">برامج</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-2">الخطوط</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-1">الالوان</button>
+                </div>
+              </div> <!-- end controls container -->
+            </nav>
+            </div>
+
+                        <!-- category -->
+
+
+          <div class="container  wow fadeInLeft " data-wow-delay="1.2s"  id="container"> <!-- start container -->
+            <div class="row">
 <?php
 
-        } elseif ($mod == 'webDesign') { // ############# webDesign Page #################### 
+                      $webCate = webCat(1); // function for call up categories
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-1"><!-- ألوان -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                     <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
+
+                      $webCate = webCat(2);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-2"><!-- خطوط غرافك -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                      <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
+
+                      $webCate = webCat(3);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-3"><!-- برامج غرافك -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                      <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+
+<?php
+  }
+}
+
+                      $webCate = webCat(4);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-4"><!-- دعم غرافيك -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                      <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
+
+                      $webCate = webCat(5);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-5"><!-- مدارس غرافك -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                      <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
+
+                      $webCate = webCat(6);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-7"><!-- المزيد غرافك -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                      <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+
+<?php
+  }
+}
+
+                      $webCate = webCat(32);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-6"><!-- الصور -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                      <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+
+<?php
+  }
+}
 ?>
-        <div class="container">
-            <h1 class="cat-h1 text-center mb-5 mt-5">تصميم ويب</h1>
-            
-            <!--**************** Start Card-Color *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>الألون</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(1);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-                
-            <!--**************** Start Card-Fonts *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>الخطوط</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(7);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-            
-            <!--**************** Start Card-Programs *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>البرامج</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(8);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-            <!--**************** Start Card-Support *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>الدعم</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(9);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-            <!--**************** Start Card-Schools *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>المدارس</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(10);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-            <!--**************** Start Card-More *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>المزيد</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(11);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-        </div><!--End container -->
-
-
-                    
+            </div><!-- end row -->
+          </div><!-- end container -->
+        </div><!-- end page -->
 <?php
-               
-        } elseif ($mod == 'programmingWeb') {// ########################### programmingWeb Page ####################
+                // ############# webDesign Page ####################2
+        } elseif ($mod == 'webDesign') { ?>
 
-            ?>
+          <div class="page"><!-- start page -->
+            <div class="back text-center ">
+              <h2 class="wow fadeInRightBig" data-wow-delay="1.2s" >تصميم ويب</h2>
+              <nav class="navbar navbar-default">
+              <div class="container">
+                  <div class="controls text-center  wow lightSpeedIn" data-wow-delay="1.2s" > <!-- start controls container -->
+                    <button type="button" class="control btn-default" data-filter=".cat-5">المزيد</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-4">مدارس</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-2">برامج</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-3">دعم</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-6">الصور</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-1">خطوط</button>
+                </div>
+              </div> <!-- end controls container -->
+            </nav>
+            </div>
 
-        <div class="container">
-            <h1 class="cat-h1 text-center mb-5 mt-5">برمجة ويب </h1>
-            
-            <!--**************** Start Card-Color *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>أختبار</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(12);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-                
-            <!--**************** Start Card-Language booklet *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>كتيب اللغات</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(13);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-            
-            <!--**************** Start Card-host *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>أستضافات</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(14);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
+                        <!-- category -->
 
 
-            <!--**************** Start Card-Programs *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>البرامج</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(15);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-            <!--**************** Start Card-Support *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>الدعم</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(16);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-            <!--**************** Start Card-Schools *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>المدارس</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(17);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-            <!--**************** Start Card-More *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>المزيد</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(18);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-        </div><!--End container -->
-
-
-                    
+          <div class="container  wow fadeInLeft " data-wow-delay="1.2s"  id="container"> <!-- start container -->
+            <div class="row">
 <?php
 
-        } elseif($mod == 'programmingDesktop') {// ################## programmingDesktop Page ###################
-
-            ?>
-
-        <div class="container">
-            <h1 class="cat-h1 text-center mb-5 mt-5"> سطح المكتب</h1>
-            
-            
-                
-            <!--**************** Start Card-Language booklet *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>كتيب اللغات</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(19);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-            
-            <!--**************** Start Card-Programs *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>البرامج</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(20);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-            <!--**************** Start Card-Support *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>الدعم</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(21);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-            <!--**************** Start Card-Schools *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>المدارس</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(22);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-            <!--**************** Start Card-More *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>المزيد</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(23);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-        </div><!--End container -->
-
-
-                    
+                      $webCate = webCat(7); // function for call up categories
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-1"><!-- خطوط ويب -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                      <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
 <?php
+  }
+}
 
-        } elseif ($mod == 'Mobile') {// ########################### Mobile Page ##########################
-
-            ?>
-
-        <div class="container">
-            <h1 class="cat-h1 text-center mb-5 mt-5">موبايل </h1>
-            
-            <!--**************** Start Card-Language booklet *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>كتيب اللغات</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(24);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-            
-            <!--**************** Start Card-Programs *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>البرامج</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(25);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-            <!--**************** Start Card-Support *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>الدعم</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(26);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-            <!--**************** Start Card-Schools *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>المدارس</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(27);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-            <!--**************** Start Card-More *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>المزيد</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(28);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
-                        </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-        </div><!--End container -->
-
-
-                    
+                      $webCate = webCat(8);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-2"><!--برامج ويب -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                      <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
 <?php
-            
-        } elseif ($mod == 'More') {//###################### More Page #####################
+  }
+}
+
+                      $webCate = webCat(9);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-3"><!-- دعم ويب -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                      <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+
+<?php
+  }
+}
+
+                      $webCate = webCat(10);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-4"><!-- مدارس ويب -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                      <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
+
+                      $webCate = webCat(11);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-5"><!--  المزيد -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                      <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
+
+                      $webCate = webCat(32);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-6"><!-- الصور -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                      <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
 ?>
-          <div class="container">
-            <h1 class="cat-h1 text-center mb-5 mt-5"> المزيد</h1>
-            
-            <!--**************** Start Card-Programs *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>البرامج</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(29);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
+            </div><!-- end row -->
+          </div><!-- end container -->
+        </div><!-- end page -->
 
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
+
+
+<?php
+                // #################### programmingWeb Page #########3
+        } elseif ($mod == 'programmingWeb') {?>
+
+          <div class="page"><!-- start page -->
+            <div class="back text-center ">
+              <h2 class="wow fadeInRightBig" data-wow-delay="1.2s" >برمجة ويب</h2>
+              <nav class="navbar navbar-default">
+              <div class="container">
+                  <div class="controls text-center  wow lightSpeedIn" data-wow-delay="1.2s" > <!-- start controls container -->
+                    <button type="button" class="control btn-default" data-filter=".cat-6">المزيد</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-5">مدارس</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-4">دعم</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-3">برامج</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-7">كتيب اللغات</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-2">أستضافة</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-1">أختبار الموقع</button>
+
+                </div>
+              </div> <!-- end controls container -->
+            </nav>
+            </div>
+
+                        <!-- category -->
+
+
+          <div class="container  wow fadeInLeft " data-wow-delay="1.2s"  id="container"> <!-- start container -->
+            <div class="row">
+<?php
+
+                      $webCate = webCat(12); // function for call up categories
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-1"><!-- أختبار ويب -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                      <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
+
+                      $webCate = webCat(13);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-7"><!-- كتيب اللغ أستضافة -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                      <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
+
+                      $webCate = webCat(14);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-2"><!-- أستضافة -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                      <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+
+<?php
+  }
+}
+
+                      $webCate = webCat(15);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-3"><!-- برامج برمجة ويب -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                      <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
+
+                      $webCate = webCat(16);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-4"><!--  دعم برمجة الويب -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                      <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
+
+                      $webCate = webCat(17);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-5"><!-- مدارس برمجة ويب -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                      <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+
+<?php
+  }
+}
+
+                      $webCate = webCat(18);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-6"><!-- المزيد -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                      <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+
+<?php
+  }
+}
+?>
+            </div><!-- end row -->
+          </div><!-- end container -->
+        </div><!-- end page -->
+
+
+<?php
+                // ################## programmingDesktop Page #######4
+        } elseif($mod == 'programmingDesktop') {?>
+
+                    <div class="page"><!-- start page -->
+            <div class="back text-center ">
+              <h2 class="wow fadeInRightBig" data-wow-delay="1.2s" > دسك توب</h2>
+              <nav class="navbar navbar-default">
+              <div class="container">
+                  <div class="controls text-center  wow lightSpeedIn" data-wow-delay="1.2s" > <!-- start controls container -->
+                    <button type="button" class="control btn-default" data-filter=".cat-5">المزيد</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-4">مدارس</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-3">دعم</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-2">برامج</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-1">كتيب اللغات</button>
+                </div>
+              </div> <!-- end controls container -->
+            </nav>
+            </div>
+
+                        <!-- category -->
+
+
+          <div class="container  wow fadeInLeft " data-wow-delay="1.2s"  id="container"> <!-- start container -->
+            <div class="row">
+<?php
+
+                      $webCate = webCat(19); // function for call up categories
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-1"><!-- كتيب اللغ   -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                     <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
+
+                      $webCate = webCat(20);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-2"><!--  برامج  -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                     <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
+
+                      $webCate = webCat(21);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-3"><!-- دعم -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                     <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+
+<?php
+  }
+}
+
+                      $webCate = webCat(22);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-4"><!-- مدارس -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                     <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
+
+                      $webCate = webCat(23);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-5"><!-- المزيد -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                     <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
+?>
+            </div><!-- end row -->
+          </div><!-- end container -->
+        </div><!-- end page -->
+
+
+<?php
+                // ###################### Mobile Page ###############5
+        } elseif ($mod == 'Mobile') {?>
+
+        <div class="page"><!-- start page -->
+            <div class="back text-center ">
+              <h2 class="wow fadeInRightBig" data-wow-delay="1.2s" >موبايل</h2>
+              <nav class="navbar navbar-default">
+              <div class="container">
+                  <div class="controls text-center  wow lightSpeedIn" data-wow-delay="1.2s" > <!-- start controls container -->
+                    <button type="button" class="control btn-default" data-filter=".cat-5">المزيد</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-4">مدارس</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-3">دعم</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-2">برامج</button>
+                    <button type="button" class="control btn-default" data-filter=".cat-1">كتيب اللغات</button>
+                </div>
+              </div> <!-- end controls container -->
+            </nav>
+            </div>
+
+                        <!-- category -->
+
+
+          <div class="container  wow fadeInLeft " data-wow-delay="1.2s"  id="container"> <!-- start container -->
+            <div class="row">
+<?php
+
+                      $webCate = webCat(24); // function for call up categories
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-1"><!-- كتيب اللغ   -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                     <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
+
+                      $webCate = webCat(25);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-2"><!--  برامج  -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                     <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
+
+                      $webCate = webCat(26);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-3"><!-- دعم -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                     <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+
+<?php
+  }
+}
+
+                      $webCate = webCat(27);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-4"><!-- مدارس -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                     <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
+
+                      $webCate = webCat(28);
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-5"><!-- المزيد -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                     <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
+?>
+            </div><!-- end row -->
+          </div><!-- end container -->
+        </div><!-- end page -->
+
+
+<?php
+
+                //###################### More Page ##################6
+        } elseif ($mod == 'More') {?>
+
+
+        <div class="page"><!-- start page -->
+            <div class="back text-center ">
+              <h2 class="wow fadeInRightBig" data-wow-delay="1.2s" >المزيد</h2>
+              <nav class="navbar navbar-default">
+              <div class="container">
+                  <div class="controls text-center  wow lightSpeedIn" data-wow-delay="1.2s" > <!-- start controls container -->
+                    <button type="button" class="control btn-default" data-filter=".cat-1">بدون تصنيف</button>
+                </div>
+              </div> <!-- end controls container -->
+            </nav>
+            </div>
+
+                        <!-- category -->
+
+
+          <div class="container  wow fadeInLeft " data-wow-delay="1.2s"  id="container"> <!-- start container -->
+            <div class="row">
+<?php
+
+                      $webCate = webCat(29); // function for call up categories
+                       foreach($webCate as $web){
+                         if($web['Approve'] == 1) {
+                             ?>
+              <div class="mix col-sm-6 col-md-3 cat-1"><!--  بدون تصنيف  -->
+                <div class="thumbnail text-center">
+                   <img src="<?php echo $fileWebimg . $web['Images'] ; ?>" alt="">
+                   <div class="caption">
+                     <h3><?php echo $web['Name'] ; ?></h3>
+                     <div class="star-grop">
+                       <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?>" aria-hidden="true"></i>
+                       <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?>" aria-hidden="true"></i>
+                     </div>
+                      <p class="lead"><?php echo $web['Description'] ; ?></p>
+                     <p><a href="<?php echo $web['Domain'] ; ?>" target="_blank" class="btn btn-danger" role="button"><?php echo $goLink; ?></a></p>
+                   </div>
+                 </div>
+              </div>
+<?php
+  }
+}
+?>
+            </div><!-- end row -->
+          </div><!-- end container -->
+        </div><!-- end page -->
+
+
+<?php
+                //############## service provider Page ###############7
+        } elseif ($mod == 'serviceProvider') {?>
+
+                  <div class="page">
+                  <div class="cont-us text-center">
+                    <div class="container">
+                    <h2>من نحن</h2>
+                      <div class="row">
+                        <div class="col-sm-12 col-md-6 us">
+                        <img src="layout\imgs\kamal.jpg" alt="..." class="img-rounded">
+                        <h3>كمال طبش</h3>
+                        <h4>back end dev</h4>
+                         <div class="icons">
+                          <a href="https://github.com/Kemal-Helios">
+                          <i class="fa fa-github-square fa-3x" aria-hidden="true"></i>
+                          </a>
+                          <a href="https://www.facebook.com/kamal.tabash">
+                          <i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i>
+                          </a>
+                          <a href="https://codepen.io/Helios1/">
+                          <i class="fa fa-codepen fa-3x" aria-hidden="true"></i>
+                          </a>
+                          <a href="https://www.linkedin.com/in/kamal-tabsh-b30443147/">
+                          <i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i>
+                          </a>
+                          <a href="https://plus.google.com/u/0/107973574952468001191">
+                          <i class="fa fa-google-plus-square fa-3x" aria-hidden="true"></i>
+                          </a>
                         </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-            <!--**************** Start Card-Support *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>الدعم</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(30);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
                         </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
-
-            <!--**************** Start Card-Schools *************** -->
-            <div class="card  border-dark mb-3 mt-3 col-md-12">
-                    <div class="card-header">
-                        <h4 class='click text-center'>المدارس</h4>
-                    </div>
-                <div class="card-body text-dark">
-                    <div class="row">
-                        <?php
-                           $webCat9 = webCat(31);
-                       foreach($webCat9 as $web){
-                           if($web['Approve'] == 1){
-                           ?>
-                            
-                        <div class="col-xs-6 col-md-2">
-                            <div class="carde">
-                                <div class="front">
-                                    <div class="over-hidd">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                <?php
-                                    echo "<span>" . $web['Name'] . "</span>";
-
-                                    if(!empty($web['Images']) && file_exists($fileWebimg . $web['Images'])) {
-                                            echo "<img src='". $fileWebimg . $web['Images'] ."' class='wid-img img-fluid'/>";
-                                    } else {
-                                            echo "<img src='". $fileWebimg . $imgEmpty ."' class='wid-img img-fluid'/>";
-                                    }
-                                ?>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 1){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 2){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 3){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 4){echo 'gold';} ?> " aria-hidden='true'></i>
-                                    <i class="fa fa-star <?php if($web['Stars'] >= 5){echo 'gold';} ?> " aria-hidden='true'></i>
-                                        
-                                    </a>   
-                                    </div> 
-                                </div>
-                                <div class="back">
-                                    <a href="<?php echo $web['Domain']; ?>" class="thumbnail">
-                                        
-                                <?php 
-                                    if(!empty($web['Description'])){
-                                        echo "<p class='lead'> ". $web['Description'] . "</p>"; 
-                                    } else {
-                                        echo "<p class='lead par-empty'> ". $descEmpty . "</p>";
-                                               
-                                    }
-                                ?>
-                                        
-                                    </a>    
-                                </div>
-                            </div>   
+                        <div class="col-sm-12 col-md-6 us">
+                        <img src="layout\imgs\magdy.jpg" alt="..." class="img-rounded">
+                        <h3>محمد مجدي</h3>
+                        <h4>front end dev</h4>
+                        <div class="icons">
+                          <a href="https://github.com/moh-magdy">
+                          <i class="fa fa-github-square fa-3x" aria-hidden="true"></i>
+                          </a>
+                          <a href="https://www.facebook.com/moh.mgd">
+                          <i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i>
+                          </a>
+                          <a href="https://codepen.io/moh-magdy/">
+                          <i class="fa fa-codepen fa-3x" aria-hidden="true"></i>
+                          </a>
+                          <a href="https://linkedin.com/in/mohamed-magdy-0ba450145">
+                          <i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i>
+                          </a>
+                          <a href="https://google.com/+mohmedmagdi‏">
+                          <i class="fa fa-google-plus-square fa-3x" aria-hidden="true"></i>
+                          </a>
                         </div>
-                    
-                 <?php    }   } ?>
-                    </div><!--End Row -->
-                </div><!--End Card-Body -->
-            </div><!--End Card -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
 
-        </div><!--End container -->
-<?php 
 
+
+<?php
+                //###################### call us Page ################8
+        } elseif ($mod == 'callUs') {?>
+
+                <div class="page">
+                  <div class="cont-us text-center">
+                    <div class="container">
+                    <h2>اتصل بنا</h2>
+                      <div class="row">
+                        <div class="col-sm-12 ">
+                          <div class="size">
+                          <form onsubmit="event.preventDefault();">
+                            <div class="form-group">
+                              <input type="email" id="usEmail" class="form-control" placeholder="البريد الالكتروني">
+                            </div>
+                            <div class="form-group">
+                              <input type="text" id="theme" class="form-control" placeholder="الموضوع">
+                            </div>
+                            <div class="form-group">
+                              <textarea class="form-control" id="message"  rows="3" placeholder="رسالتك هنا"></textarea>
+                            </div>
+
+                            <button type="submit" onclick="addMessage('addNewMess')" class="btn btn-danger">راسلنا</button>
+                          </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <div id="alert"></div>
+<?php
         } else {
+
         header('Location: index.php'); //Redirect To index Page
         exit();
+
     }
 
-        include $tpl . "‫footer_cat.php";
-        
+//End Page
+
+        include $tpl . "footer.php";?>
+        <script src="<?php echo $js ?>mixup.js"></script>
+<?php
     ob_end_flush(); // Headers Sent

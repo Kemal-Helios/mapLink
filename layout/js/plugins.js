@@ -1,111 +1,157 @@
-/*global $, jquery, alert*/
-$(document).ready(function () {
 
-    'use strict';
-/*
-    $(window).on("load", function () {
-        'use strict';
-        $(".loader, inner").fadeOut("slow");
+$(document).ready(function(){
+    $('.cont-us').css('min-height', $('.page').height());
+
+
+
+		// init SmoothScroll
+		var scroll = new SmoothScroll('a[href*="#"]', {
+
+			// Speed & Easing
+			speed: 800, // Integer. How fast to complete the scroll in milliseconds
+			offset: 200, // Integer or Function returning an integer. How far to offset the scrolling anchor location in pixels
+			easing: 'easeInOutCubic', // Easing pattern to use
+
+        });
+});
+
+
+/* Function input is empty  v 1.0 */
+function isNotEmpty(caller) {
+    "use strict";
+    if (caller.val() === '') {
+        caller.css('border', '1px solid red');
+        return false;
+    } else {
+        caller.css('border', '');
+        return true;
+    }
+}
+
+/* Function Insert addWebsites  v 1.0 */
+function addWebsites(key) {
+    "use strict";
+    var catId   = $("#cat_id");
+    var name    = $("#nameWeb");
+    var domain  = $("#domain");
+    var desc    = $("#description");
+
+    if (isNotEmpty(name) && isNotEmpty(domain) && isNotEmpty(desc)) {
+
+        $.ajax({
+            url: 'insertjs.php',
+            method: 'POST',
+            dataType: 'text',
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            data: {
+                key: key,
+                catId: catId.val(),
+                name: name.val(),
+                domain: domain.val(),
+                desc: desc.val()
+            }
+        }).done(function (response) {
+            $('#alert').append(response);
+                name.val('');
+                domain.val('');
+                desc.val('');
+        }).fail(function () {
+            alert('Error');
+        });
+    }
+}
+
+
+/* Function Insert addComment  v 1.0 */
+function addComment(key) {
+    "use strict";
+    var nameCom = $("#nameCom");
+    var comment = $("#comment");
+
+    if (isNotEmpty(nameCom) && isNotEmpty(comment)) {
+
+        $.ajax({
+            url: 'insertjs.php',
+            method: 'POST',
+            dataType: 'text',
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            data: {
+                key: key,
+                nameCom: nameCom.val(),
+                comment: comment.val()
+            }
+        }).done(function (response) {
+            $('#alert').append(response);
+                nameCom.val('');
+                comment.val('');
+        }).fail(function () {
+            alert('Error');
+        });
+    }
+}
+
+/* Function Insert addEmail  v 1.0 */
+function addEmail(key) {
+    "use strict";
+    var email = $("#email");
+    if (isNotEmpty(email)) {
+
+        $.ajax({
+            url: 'insertjs.php',
+            method: 'POST',
+            dataType: 'text',
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            data: {
+                key: key,
+                email: email.val()
+            }
+        }).done(function (response) {
+            $('#alert').append(response);
+                email.val('');
+        }).fail(function () {
+            alert('Error');
+        });
+    }
+}
+
+
+/* Function Insert addMessage  v 1.0 */
+function addMessage(key) {
+    "use strict";
+    var usEmail = $("#usEmail");
+    var theme   = $("#theme");
+    var message = $("#message");
+    if (isNotEmpty(usEmail) && isNotEmpty(theme) && isNotEmpty(message)) {
+
+        $.ajax({
+            url: 'insertjs.php',
+            method: 'POST',
+            dataType: 'text',
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            data: {
+                key: key,
+                usEmail: usEmail.val(),
+                theme: theme.val(),
+                message: message.val()
+            }
+        }).done(function (response) {
+            $('#alert').append(response);
+                usEmail.val('');
+                theme.val('');
+                message.val('');
+        }).fail(function () {
+            alert('Error');
+        });
+    }
+}
+
+// loding screen
+
+$(window).on('load',function() {
+  $('.sk-cube-grid').fadeOut(1000, function () {
+    $(this).parent().fadeOut(1000, function () {
+      $('body').css("overflow","auto");
+      $(this).remove();
     });
-
- 
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 840) {
-            $('#nav-cover').css({
-                backgroundColor: "#173e43",
-                boxShadow: "1px 3px 9px 3px rgba(82, 76, 76, 0.74)",
-            });
-        }else {
-
-            $('#nav-cover').css({
-                backgroundColor: "transparent",
-                boxShadow: "none",
-            });
-             
-        }
-    });*/
-    
-    $("body").niceScroll();
-
-    
-    
-    //Hide placeholder On From Focus
-    $('[placeholder]').focus(function () {
-        $(this).attr('data-text', $(this).attr('placeholder'));
-        $(this).attr('placeholder', '');
-    }).blur(function () {
-        $(this).attr('placeholder', $(this).attr('data-text'));
-    });
-    
-
-    $(".down").click(function () {
-        
-        $(".content, .about").slideUp(800);
-        $(".fix-web, .comment, .footer").fadeIn(1300);
-    });
-
-    $(".up").click(function () {
-
-        $(".content, .about").slideDown(1800);
-        $(".fix-web, .comment, .footer").fadeOut(1000);
-    });
-    
-    //navBar
-    $("#dropdown-x").on("click", function () {
-        if ($(this).hasClass("open")) {
-            $(this).removeClass("open");
-            $(this).children("ul").slideUp("fast");
-        } else {
-            $(this).addClass("open");
-            $(this).children("ul").slideDown("fast");
-        }
-    });
-
-    $('.card .card-header').on('click', function () {
-        $(this).next('.card-body').slideToggle(400);
-    });
-
-
-
-    var maxText = $('#comLngth').attr('maxlength');
-
-    $('#comLngth').keyup(function () {
-
-        var textLength = $(this).val().length,
-            remText = maxText - textLength;
-
-        $('.commLngth').html('<span>' + remText + '</span> عدد الحروف');
-
-        if ($('.commLngth span').text() <= 10) {
-
-            $('.commLngth span').css('color', 'red');
-            $('.commLngth').css('color', 'red');
-        } else {
-
-            $('.commLngth span').css('color', 'rgb(83, 147, 167)');
-            $('.commLngth').css('color', 'rgb(83, 147, 167)');
-        }
-    });
-
-
-    var maxText = $('#addLngth').attr('maxlength');
-
-    $('#addLngth').keyup(function () {
-
-        var textLength = $(this).val().length,
-            remText = maxText - textLength;
-
-        $('.addwebLngth').html('<span>' + remText + '</span> عدد الحروف');
-
-        if ($('.addwebLngth span').text() <= 10) {
-
-            $('.addwebLngth span').css('color', '#F00');
-            $('.addwebLngth').css('color', '#F00');
-        } else {
-
-            $('.addwebLngth span').css('color', 'rgb(79, 111, 103)');
-            $('.addwebLngth').css('color', 'rgb(79, 111, 103)');
-        }
-    });
-
+  });
 });

@@ -1,6 +1,6 @@
 <?php
 
-$dsn    =   'mysql:host=localhost;dbname=myshortcuts';
+$dsn    =   'mysql:host=localhost;dbname=maplinks';
 $user   =   'root';
 $pass   =   '';
 $option   =   array(
@@ -11,7 +11,8 @@ try {
 
     $contant    =   new PDO($dsn, $user, $pass, $option);
     $contant->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+    
+   
 }
 
 catch (PDOException $e) {
@@ -19,3 +20,7 @@ catch (PDOException $e) {
     echo 'Failed to connect to the database';
 
 }
+
+/* Contant For Insert In Index Page  */
+    $conn = new mysqli('localhost', 'root', '', 'maplinks');
+    $conn ->set_charset("utf8");
